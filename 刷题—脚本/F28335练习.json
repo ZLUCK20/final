@@ -1,0 +1,996 @@
+{
+  "subject": "F28335练习",
+  "questions": [
+    {
+      "id": 1,
+      "type": "填空",
+      "question": "TMS320F28335DSP中， TMS表 示____， 320表 示____，F 表示____。",
+      "answer": [
+        "Flash EEPROM",
+        "TI DSP系列",
+        "合格产品"
+      ],
+      "explain": "TMS=合格产品，320=TI DSP系列，F=Flash EEPROM。"
+    },
+    {
+      "id": 2,
+      "type": "填空",
+      "question": "TMS320F28335DSP 是 TI 公司推出的  ____ 位 ____   点 DSP 处理器， 广泛应用于工业控制。 TMS320F28335DSP 比定点的 TMS320F2812 多了____（FPU）。",
+      "answer": [
+        "浮点运算单元",
+        "浮",
+        "32"
+      ],
+      "explain": "F28335是32位浮点DSP，广泛应用于工业控制，具有浮点运算单元(FPU)。"
+    },
+    {
+      "id": 3,
+      "type": "填空",
+      "question": "TMS320F28335DSP 包含 6 个增强型____CAP 模块，可捕获脉冲的上升沿或下降沿，当 eCAP 模块不用来捕获脉冲时，可配置成通道的 ____ 输出，即____。",
+      "answer": [
+        "APWM",
+        "PWM",
+        "脉冲捕获"
+      ],
+      "explain": "eCAP可捕获脉冲的上升沿或下降沿，可配为捕获模式或APWM模式输出PWM。"
+    },
+    {
+      "id": 4,
+      "type": "填空",
+      "question": "TMS320F28335DSP 的 QEP 模块可用来测量带编码器的电机转子旋转的____ 、____ 、 ____  等信息。",
+      "answer": [
+        "速度",
+        "方向",
+        "位置"
+      ],
+      "explain": "eQEP用于测量电机转子位置、方向和速度。"
+    },
+    {
+      "id": 5,
+      "type": "填空",
+      "question": "TMS320F28335DSP包含____个____位的CPU定时器TIMER0~2，如果用户不使用DSP/BIOS功能，____也可正常使用。",
+      "answer": [
+        "3",
+        "32",
+        "定时器2"
+      ],
+      "explain": "3个32位定时器，如果用户不使用DSP/BIOS功能，定时器2也可正常使用。"
+    },
+    {
+      "id": 6,
+      "type": "填空",
+      "question": "I2C 总线是一种由 Philips 公司开发的通信协议，可通过 ____ 和 ____ 这两条信号线来完成数据的 ____ 行通信。",
+      "answer": [
+        "串",
+        "时钟线",
+        "数据线"
+      ],
+      "explain": "I2C是一种由Philips公司开发的通信协议，通过SDA(数据线)和SCL(时钟线)串行通信。"
+    },
+    {
+      "id": 7,
+      "type": "填空",
+      "question": "1、通常使用 30M 晶振为 TMS320F28335DSP 提供时基，当 PLLCR[DIV]设置为最大值____  ，PLLSTS[DIVSEL]设置为 2 的时候，送至 CPU 的时钟可以达到____Hz ，这也是 TMS320F28335  所 能 支 持 的____ 时钟频率。",
+      "answer": [
+        "最高",
+        "150M",
+        "10"
+      ],
+      "explain": "30M*10/2=150MHz，这是F28335最高主频。"
+    },
+    {
+      "id": 8,
+      "type": "填空",
+      "question": "2 、 复位 ~XRS 、 GPIO  PortA  和仿真器的信号能够从 HALT  方式唤醒  ____  。在 STANDBY 和 HALT 模式时，虽然____ \t输入时钟 CLKIN 被关闭，仿真调试的____端口仍可正常工作。",
+      "answer": [
+        "JTAG",
+        "CPU",
+        "CPU"
+      ],
+      "explain": "低功耗模式下CPU时钟CLKIN关闭，JTAG仿真端口仍可工作。"
+    },
+    {
+      "id": 9,
+      "type": "填空",
+      "question": "TMS320F28335DSP 的看门狗电路有一个 8 位的看门狗 ____  计数器 WDCNTR，无论什么时候，如果 WDCNTR 计数到  ____  时，看门狗模块就会产生一个输出脉冲，脉冲宽度为 512 个振荡器时钟宽度。为了防止看门狗加法计数器WDCNTR 溢出，通常可以采用两种方法：一种是禁止看门狗，即使得计数器 WDCNTR 无效；另一种就是定期的“____ ”，通过软件向负责复位看门狗计数器的看门狗密钥寄存器（8 位的 WDKEY）周期性的写入 0x55+0xAA，紧跟着 0x55 写入 0xAA 能够清除 WDCNTR。当向 WDKEY 写 0x55 时，WDCNTR 复位到使能的位置；只有在向 WDKEY 写 0xAA 后才会使 WDCNTR 真正地被清除。只要向 WDKEY 写 0x55 和 0xAA，无论写的顺序如何都不会导致系统复位，而只有先写 0x55，再写 0xAA 才会清除 WDCNTR。写任何其他的值都会使系统立即复位。",
+      "answer": [
+        "喂狗",
+        "最大值",
+        "加法"
+      ],
+      "explain": "看门狗加法计数器WDCNTR溢出产生复位脉冲，可禁止看门狗或喂狗(先0x55再0xAA到WDKEY清除WDCNTR)防止溢出。"
+    },
+    {
+      "id": 10,
+      "type": "填空",
+      "question": "为了防止看门狗加法计数器WDCNTR溢出，可以采用两种方法：一种是____看门狗；另一种就是定期的喂狗，通过软件向看门狗密钥寄存器WDKEY周期性的写入____，以清除____寄存器。",
+      "answer": [
+        "禁止",
+        "0x55+0xAA",
+        "WDCNTR"
+      ],
+      "explain": "禁止看门狗或先0x55再0xAA到WDKEY清除WDCNTR。"
+    },
+    {
+      "id": 11,
+      "type": "填空",
+      "question": "２. TMS320F28335DSP 为用户提供了____ 个多功能复用引脚 GPIO0～GPIO87。    复用的意思是每个引脚都可以配置成通用的数字____ 工作模式，也可以配置成外设I/O 工作模式，例如外设 SCI、ePWM、eQEP 的引脚，每个引脚除了通用数字 ____ 功能外，通常还有三个 ____  功能。GPIO 引脚究竟用作哪种功能，可以通过   寄存器   来设置。",
+      "answer": [
+        "外设",
+        "I/O",
+        "I/O",
+        "88"
+      ],
+      "explain": "88个复用引脚GPIO0~87，可作为外设I/O或通用数字I/O。"
+    },
+    {
+      "id": 12,
+      "type": "填空",
+      "question": "TMS320F28335DSP的每个引脚除了通用数字____功能外，通常还有三个____功能。GPIO引脚究竟用作哪种功能，可以通过____来设置。",
+      "answer": [
+        "I/O",
+        "外设",
+        "寄存器"
+      ],
+      "explain": "每个引脚可配为通用I/O或外设功能之一，通过GPxMUXn寄存器配置。"
+    },
+    {
+      "id": 13,
+      "type": "填空",
+      "question": "３. TMS320F28335DSP 的通用输入/输出端口GPIO 就是用I/O 引脚的管理机构，它将 88 个引脚分成 A、B、C 三组或者叫三个端口来进行管理，其中端口 A 包括____，端口 B 包括____，端口 C 包括____。",
+      "answer": [
+        "GPIO64~GPIO87",
+        "GPIO32~GPIO63",
+        "GPIO0~GPIO31"
+      ],
+      "explain": "A:0~31, B:32~63, C:64~87。"
+    },
+    {
+      "id": 14,
+      "type": "填空",
+      "question": "GPIO第一类控制寄存器主要由____GPxMUXn、____GPxDIR、____GPxQSELn等组成，第一类寄存器受EALLOW保护。",
+      "answer": [
+        "功能选择控制寄存器",
+        "方向控制寄存器",
+        "输入限定控制寄存器"
+      ],
+      "explain": "功能选择、方向、输入限定。第一类受EALLOW保护。"
+    },
+    {
+      "id": 15,
+      "type": "填空",
+      "question": "GPIO第二类数据寄存器主要由____GPxDAT、____GPxSET、清除寄存器GPxCLEAR和____GPxTOGGLE等组成，第二类寄存器不受EALLOW保护。",
+      "answer": [
+        "数据寄存器",
+        "置位寄存器",
+        "状态翻转寄存器"
+      ],
+      "explain": "数据、置位、清除、翻转。第二类不受EALLOW保护。"
+    },
+    {
+      "id": 16,
+      "type": "填空",
+      "question": "6.TMS320F28335DSP 的 GPIO 的输入限定功能通过采样窗的方式来对输入信号限定的话，有两个参数需要设置：____和____，这两个参数决定了 ____  的长度。先来看____，其意思就是进行一次采样需要花多长时间，它是以系统时钟 SYSCLKOUT 为单位的，也就是说，____是设定了进行一次采样需要多少个 SYSCLKOUT，它可以通过寄存器GPACTRL 和 GPBCTRL 进行设置。以 GPACTRL 为例，它具有 4 个位域，QUALPRD0、QUALPRD1、QUALPRD2 和 QUALPRD3。每个 QUALPRDn 的取值范围是 0～510。每 8 个 GPIO 引脚作为 1 组，例如 GPIO0～GPIO7 是由GPACTRL[QUALPRD0]来设置，GPIO8～GPIO15 是由 GPACTRL[QUALPRD1]来设置。",
+      "answer": [
+        "采样周期",
+        "采样周期",
+        "采样窗",
+        "采样次数",
+        "采样周期"
+      ],
+      "explain": "采样周期(QUALPRD)和采样次数决定采样窗长度。"
+    },
+    {
+      "id": 17,
+      "type": "填空",
+      "question": "TMS320F28335DSP内部有____K*16位的RAM存储器和____K*16位的Flash存储器，当实际应用需要更大的存储空间时，就得通过____XINTF来扩展。",
+      "answer": [
+        "34",
+        "256",
+        "外部接口"
+      ],
+      "explain": "34K RAM、256K Flash，通过XINTF(外部接口)扩展外部存储器。"
+    },
+    {
+      "id": 18,
+      "type": "填空",
+      "question": "TMS320F28335DSP  的外部接口模块 XINTF(External-Interface) 是一种____ 步接口，XINTF 接口映射到了 TMS320F28335 的三个存储空间，XINTF 区域 0、____和____。",
+      "answer": [
+        "XINTF区域7",
+        "XINTF区域6",
+        "异"
+      ],
+      "explain": "异步接口，映射Zone0、6、7。"
+    },
+    {
+      "id": 19,
+      "type": "填空",
+      "question": "TMS320F28335DSP 的 XINTF 接口用到了两个时钟信号：____和 XCLKOUT，____是 XINTF 接口的内部时钟，所有的访问操作都是以____为基准的。",
+      "answer": [
+        "XTIMCLK",
+        "XTIMCLK",
+        "XTIMCLK"
+      ],
+      "explain": "XTIMCLK为XINTF内部时钟基准。"
+    },
+    {
+      "id": 20,
+      "type": "填空",
+      "question": "TMS320F28335DSP 的 XINTF 接口的写操作或读操作时序可分为三个部分：____ 时间 （Lead）、____ 时间 （ Active ）和 ____ 时间（Trail）。通过配置，每个区域的 XTIMING 寄存器可为 该区域的三个部分设定相应的等待时间，等待时间以 XTIMCLK 周期为最小单位，每个区域读操作和写操作的建立、有效和跟踪时间都可以独立配置。",
+      "answer": [
+        "跟踪",
+        "有效",
+        "建立"
+      ],
+      "explain": "建立(Lead)、有效(Active)、跟踪(Trail)三段。"
+    },
+    {
+      "id": 21,
+      "type": "填空",
+      "question": "TMS320F28335DSP 的 XINTF 接口通过采样____信号，外部设备可扩展访问操作的有效时间。所有的 XINTF 区域共用一个____输入信号，但每个XINTF区域可以被独立地配置采样或者忽略____信号。如果配置成采样____模式，每个区域的采样方式有两种： ____  采样和 ____  采样。",
+      "answer": [
+        "异步",
+        "同步",
+        "XREADY",
+        "XREADY",
+        "XREADY",
+        "XREADY"
+      ],
+      "explain": "XREADY信号，可同步或异步采样。"
+    },
+    {
+      "id": 22,
+      "type": "填空",
+      "question": "TMS320F28335DSP 的 XINTF 接口所有的访问开始于外部时钟输出 XCLKOUT 的上升沿。通过对寄存器 XINTCNF2 的位 CLKMODE 进行设置， XCLKOUT  可以____ XTIMCLK ， 也可以 是 XTIMCLK 的____ ，也就是 SYSCLKOUT 的____。",
+      "answer": [
+        "四分之一",
+        "一半",
+        "等于"
+      ],
+      "explain": "XCLKOUT=XTIMCLK或XTIMCLK/2=SYSCLKOUT/4。"
+    },
+    {
+      "id": 23,
+      "type": "填空",
+      "question": "4.TMS320F28335DSP 一共可以支持____ 个 CPU 中断，其中每一个中断都是一个____ 位的中断向量，也就是 2 个____ 位的寄存器，里面存储的是相应的\t 中断服务子程序  的入口地址，不过这个入口地址是个 22  位的地址。其中地址的低____ 位保存该向量的低____ 位，地址的高____ 位中的位 0-位 5 则保存它的高6位，其余更高的 10 位被忽略。",
+      "answer": [
+        "16",
+        "16",
+        "16",
+        "16",
+        "32",
+        "32"
+      ],
+      "explain": "可配16位或32位。"
+    },
+    {
+      "id": 24,
+      "type": "填空",
+      "question": "XINTF 32位模式时XA0/XWE1功能为____，写高16位时____电平。",
+      "answer": [
+        "XWE1",
+        "低"
+      ],
+      "explain": "32位模式下XA0/XWE1用作XWE1(写高16位使能)，低有效。"
+    },
+    {
+      "id": 25,
+      "type": "填空",
+      "question": "1.TMS320FF28335DSP 的中断系统从上至下分成了三级，即____中断、____中断和 ____  中断。",
+      "answer": [
+        "外设",
+        "PIE级",
+        "CPU级"
+      ],
+      "explain": "CPU级->PIE级->外设级三级中断。"
+    },
+    {
+      "id": 26,
+      "type": "填空",
+      "question": "2.TMS320F28335DSP 的 中 断 主 要 有 两种方式触发。一种是通过在 ____ 中写指令，例如 INTR、ORIFR 或者 TRAP 指令。另一种是硬件方式触发，例如来自于片内外设，或者外围设备的中断信号，表示某个事件已经发生。无论是 ____ 中断， 还是硬件中断， 都可以归结为____和不____。",
+      "answer": [
+        "可屏蔽中断",
+        "可屏蔽中断",
+        "软件",
+        "软件"
+      ],
+      "explain": "软件/硬件触发，分为可屏蔽和不可屏蔽。"
+    },
+    {
+      "id": 27,
+      "type": "填空",
+      "question": "不可屏蔽中断主要包括____中断、硬件中断、____陷阱和硬件____中断。",
+      "answer": [
+        "软件",
+        "非法指令",
+        "复位"
+      ],
+      "explain": "含软件中断、非法指令陷阱、复位中断。"
+    },
+    {
+      "id": 28,
+      "type": "填空",
+      "question": "32个CPU中断，每个是____位的中断向量，存____的入口地址(____位)。",
+      "answer": [
+        "32",
+        "中断服务子程序",
+        "22"
+      ],
+      "explain": "32位向量存ISR的22位入口地址。"
+    },
+    {
+      "id": 29,
+      "type": "填空",
+      "question": "6.当 TMS320F28335DSP 的外设中断向 ____  提出中断请求之后，____寄存器 PIEIFRx 的相关标志位被置位，这时候如果相应的 PIEIERx 相关的____位被置位，PIEACK 相应位的值为 0____ 控制器便会将该外设中断请求提交给 CPU，否则如果相应的 PIEIERx 相关的____位没有被置位，就是没有被使能，或者 PIEACK 相应位的值为 1，就是 PIE控制器正在处理同组的其他中断____ 控制器都暂时不会响应外设的中断请求。",
+      "answer": [
+        "PIE",
+        "中断使能",
+        "PIE",
+        "中断使能",
+        "PIE中断标志",
+        "PIE"
+      ],
+      "explain": "PIE->PIEIFRx->PIEIERx->CPU。"
+    },
+    {
+      "id": 30,
+      "type": "填空",
+      "question": "软件触发中断的指令有：____、OR IFR和____。",
+      "answer": [
+        "INTR",
+        "TRAP"
+      ],
+      "explain": "INTR、OR IFR、TRAP三条软件触发指令。"
+    },
+    {
+      "id": 31,
+      "type": "填空",
+      "question": "PIE支持____个中断，分____组，每组____个。",
+      "answer": [
+        "96",
+        "12",
+        "8"
+      ],
+      "explain": "96个中断，12组*8个。"
+    },
+    {
+      "id": 32,
+      "type": "填空",
+      "question": "CAP即Capture的缩写，即____的意思，可用来____脉冲或____脉冲。",
+      "answer": [
+        "捕获",
+        "捕获",
+        "生成"
+      ],
+      "explain": "eCAP可捕获(输入)或生成(输出)脉冲。"
+    },
+    {
+      "id": 33,
+      "type": "填空",
+      "question": "当 TMS320F28335DSP 的 eCAP 模块工作在捕获模式时，计数器工作在增计数模式，CAP1-4 用来保存时间信息；当 eCAP 模块工作在 APWM 模式时，计数器也工作在增计数模式，可以产生____ PWM，此时 CAP1 作为____，CAP2 作为____，CAP3 作为____的映射寄存器， CAP4 作为____的映射寄存器。当使用映射模式时， 给CAP1/CAP2 写任何值的时候，同样地会写入相应的映射寄存器 CAP3/CAP4。",
+      "answer": [
+        "比较寄存器",
+        "周期寄存器",
+        "比较寄存器",
+        "周期寄存器",
+        "不对称"
+      ],
+      "explain": "捕获存时间，APWM产生不对称PWM，CAP1=周期寄存器，CAP2=比较寄存器。"
+    },
+    {
+      "id": 34,
+      "type": "填空",
+      "question": "TMS320F28335DSP 的eCAP 模块可以通过寄存器ECCTL2 的CONT/ONESHT位来选择____ 捕获或者  ____ 捕获。Mod4 是一个____ 位的计数器，在边沿捕获事件（CEVT1~CEVT4）发生时按照 0→1→2→3→0 的顺序进行增计数，直到有事件将其停止。",
+      "answer": [
+        "两",
+        "单次",
+        "连续"
+      ],
+      "explain": "连续/单次捕获，Mod4为2位计数器。"
+    },
+    {
+      "id": 35,
+      "type": "填空",
+      "question": "eCAP时间计数器每次增____，时钟为____，溢出产生____信号。",
+      "answer": [
+        "1",
+        "SYSCLKOUT",
+        "溢出"
+      ],
+      "explain": "32位计数器以SYSCLKOUT为时钟，溢出产生CNTOVF。"
+    },
+    {
+      "id": 36,
+      "type": "填空",
+      "question": "TMS320F28335DSP的eCAP 模块用于输入可以实现捕获功能，即____模式；用于输出还可以作为一个 ____  通道的脉冲发生器，产生 PWM，即____工作模式。",
+      "answer": [
+        "APWM",
+        "单",
+        "捕获工作"
+      ],
+      "explain": "输入=捕获，输出=单通道APWM。"
+    },
+    {
+      "id": 37,
+      "type": "填空",
+      "question": "eCAP捕获模式CAP1-4存____；APWM模式____计数，产生____对称PWM。",
+      "answer": [
+        "时间",
+        "增",
+        "不"
+      ],
+      "explain": "捕获存时间，APWM增计数产生不对称PWM。"
+    },
+    {
+      "id": 38,
+      "type": "填空",
+      "question": "TMS320F28335DSP 的 eCAP 模块和中断相关的有 4 个寄存器，中断使能寄存器ECEINT、____寄存器ECFLG、____寄存器ECCLR和____寄存器 ECFRC。",
+      "answer": [
+        "中断强制",
+        "中断清除",
+        "中断标志"
+      ],
+      "explain": "使能、标志、清除、强制四个中断寄存器。"
+    },
+    {
+      "id": 39,
+      "type": "填空",
+      "question": "eCAP有____位时间计数器，每次____1。",
+      "answer": [
+        "32",
+        "增加"
+      ],
+      "explain": "32位计数器以SYSCLKOUT为时钟每次+1。"
+    },
+    {
+      "id": 40,
+      "type": "填空",
+      "question": "SCI 是____的简称， 即串行通信接口。SCI 是一个双线的____ 步串口， 具有接收和发送两根信号线， 一般可以看作是UART(  通用异步接收/发送装置  )。",
+      "answer": [
+        "异",
+        "Serial Communication Interface"
+      ],
+      "explain": "SCI=Serial Communication Interface，异步串口=UART。"
+    },
+    {
+      "id": 41,
+      "type": "填空",
+      "question": "根据数据的传送方向，串行通信可以分为 ____  ____  和____ 三种。",
+      "answer": [
+        "全双工",
+        "半双工",
+        "单工"
+      ],
+      "explain": "单工、半双工、全双工。"
+    },
+    {
+      "id": 42,
+      "type": "填空",
+      "question": "____(overrun)、____ (framing)、 ____ (break)检测。",
+      "answer": [
+        "间断",
+        "帧错误",
+        "超时错误"
+      ],
+      "explain": "极性错、超时错、帧错、间断错。"
+    },
+    {
+      "id": 43,
+      "type": "填空",
+      "question": "TMS320F28335DSP 的 SCI 的数据帧包括____ 个起始位、____ 个数据位、____ 个可选的奇偶校验位和____ 或 2个停止位。每个数据位占用 8 个 SCI 的时钟周期 SCICLK，也就是 LSPCLK。",
+      "answer": [
+        "1",
+        "1",
+        "1~8",
+        "1"
+      ],
+      "explain": "1起始+1~8数据+1奇偶+1/2停止。"
+    },
+    {
+      "id": 44,
+      "type": "填空",
+      "question": "在进行串口通信的时候， 双方设备都必须以相同的____和____进行通信，否则通信就会 ____  。",
+      "answer": [
+        "失败",
+        "数据传输速率",
+        "数据格式"
+      ],
+      "explain": "数据格式和速率必须一致。"
+    },
+    {
+      "id": 45,
+      "type": "填空",
+      "question": "SCI支持NRZ(____)格式，可设计为____、____等。",
+      "answer": [
+        "Non-Return-To-Zero",
+        "RS232",
+        "RS485"
+      ],
+      "explain": "NRZ格式，可配RS232/RS422/RS485。"
+    },
+    {
+      "id": 46,
+      "type": "填空",
+      "question": "SPI 是____的缩写，翻译成中文就是____。SPI 最早是由 Motorola公司在其 MC68HCXX系列处理器上定义的一种高速____ 串行通信接口。而 SCI 是一种低速异步串行通信接口，从这一点上就能看出 SPI 和 SCI 的区别。",
+      "answer": [
+        "同步",
+        "串行外围设备接口",
+        "Serial Peripheral Interface"
+      ],
+      "explain": "SPI=Serial Peripheral Interface，同步串行接口。"
+    },
+    {
+      "id": 47,
+      "type": "填空",
+      "question": "SPI 接口的通信原理很简单，它以____ 方式进行工作，这种模式的通信系统中通常有一个____ 设备和多个____ 设备。其中，CS 信号是用来控制从机的芯片是否被选中的。",
+      "answer": [
+        "从",
+        "主",
+        "主从"
+      ],
+      "explain": "主从方式，一主多从。"
+    },
+    {
+      "id": 48,
+      "type": "填空",
+      "question": "SPI有____和____工作模式，6个____寄存器。",
+      "answer": [
+        "主",
+        "从",
+        "控制"
+      ],
+      "explain": "主/从模式，6个控制+3数据+3 FIFO寄存器。"
+    },
+    {
+      "id": 49,
+      "type": "填空",
+      "question": "TMS320F28335DSP 的 SPI 通过对配置控制寄存器 SPICCR 的第 3 位至第 0 位的选择，可以实现 1~16 位数据的传输。当每次传输的数据少于 16 位时，需要注意以下几点：(1)当数据写入 SPITXBUF 和 SPIDAT 寄存器时， 必须____ 对齐；(2)当数据从SPIRXBUF寄 存 器 读 取 时 ， 必 须____ 对齐；(3)SPIRXBUF 寄存器中存放的是最新接收到的数据，数据采用____ 对齐方式，再加上前面移位到左边后留下的位。",
+      "answer": [
+        "右",
+        "右",
+        "左"
+      ],
+      "explain": "写左对齐，读右对齐，SPIRXBUF右对齐。"
+    },
+    {
+      "id": 50,
+      "type": "填空",
+      "question": "TMS320F28335DSP 的 SPI 时钟配置方案是指 SPI 在时钟脉冲的什么时刻去发送或者接收数据。配置控制寄存器 SPICCR 的____位和控制寄存器 SPICTL 的____位决定了 SPI 的时钟特性， 前面的____决定了时钟的____ ，而后面的____决定了时钟的相位。",
+      "answer": [
+        "CLOCK PHASE",
+        "极性",
+        "CLOCK POLARITY",
+        "CLOCK PHASE",
+        "CLOCK POLARITY"
+      ],
+      "explain": "CLOCK POLARITY(极性)+CLOCK PHASE(相位)。"
+    },
+    {
+      "id": 51,
+      "type": "填空",
+      "question": "CAN 是“ Controller AreaNetwork ”的缩写，意思为____，是德国____公司为现代汽车应用领域领先推出的一种多主局域网，换句话说，就是一条总线上可以挂  多 个主机进行通信。CAN 总线是一种串行通信协议，具有较高的通信速率和较强的抗干扰能力，现已被广泛地应用于工业自动化、交通工具、医疗器械、机械制造、楼宇控制、自动化仪表等众多领域。",
+      "answer": [
+        "BOSCH",
+        "控制器局域网"
+      ],
+      "explain": "CAN=Controller Area Network，BOSCH推出。"
+    },
+    {
+      "id": 52,
+      "type": "填空",
+      "question": "串行通信接口 SCI 通信时是一对一的。串行外设接口 SPI 通信时可以组成一个网络，网络中只能有一个设备为 ____  ，其余的为从机。而 CAN总线则是一种多____ 的局域网，也就是通信时这个网络中的各个设备都可以工作于 ____  模式。",
+      "answer": [
+        "主机",
+        "主",
+        "主机"
+      ],
+      "explain": "SCI一对一，SPI一主多从，CAN多主。"
+    },
+    {
+      "id": 53,
+      "type": "填空",
+      "question": "CAN 层的定义和开放系统互联模型(OSI)一致。CAN 的规范定义了 OSI 模型的 最 下 面 两 层 ， 即____层 和____  层 。____ 层协议可以由 CAN 用户自由定义成适合于某个特定领域的任意的方案。",
+      "answer": [
+        "应用",
+        "物理",
+        "数据链路"
+      ],
+      "explain": "数据链路层+物理层，应用层自定。"
+    },
+    {
+      "id": 54,
+      "type": "填空",
+      "question": "CAN远程帧有____和____格式，含帧起始、____场、控制场等。",
+      "answer": [
+        "标准",
+        "扩展",
+        "仲裁"
+      ],
+      "explain": "标准/扩展格式，含仲裁场。"
+    },
+    {
+      "id": 55,
+      "type": "填空",
+      "question": "CAN 总线是德国____公司为现代汽车应用领域领先推出的一种多\t主 局域网，在一条总线上可以挂多个主机进行通信。CAN 总线是一种串行通信协议，具有较高的通信速率和较强的抗干扰能力，现已被广泛地应用于工业自动化、交通工具、医疗器械、机械制造、楼宇控制、自动化仪表等众多领域。TMS320F28335 DSP 集成了增强型 CAN 总线通信接口，能够支持____协议。",
+      "answer": [
+        "CAN2.0B",
+        "BOSCH"
+      ],
+      "explain": "BOSCH公司，F28335支持CAN2.0B。"
+    },
+    {
+      "id": 56,
+      "type": "填空",
+      "question": "相对于____SCI 和____SPI，同为____的增强型控制器局域网接口 eCAN 就显的比较____  了。",
+      "answer": [
+        "复杂",
+        "串行通信接口",
+        "串行外设接口",
+        "串行通信接口"
+      ],
+      "explain": "相对SCI和SPI，eCAN更复杂。"
+    },
+    {
+      "id": 57,
+      "type": "填空",
+      "question": "CAN 是一种____ 主方式的串行通信总线，基本设计规范要求有高的位速率、高抗电磁干扰性、而且能够检测出产生的任何错误。当信号传输距离达到 ____  Km 时，CAN 仍可提供高达 ____  Kbit/s 的数据传输速率。由于 CAN 总线具有很高的实时性能，因此，CAN 已经在汽车工业、航空工业、工业控制、安全防护等领域中得到了广泛地应用。",
+      "answer": [
+        "50",
+        "10",
+        "多"
+      ],
+      "explain": "多主方式，10Km/50Kbit/s。"
+    },
+    {
+      "id": 58,
+      "type": "填空",
+      "question": "CAN 总线所发送的数据是以  ____  为单位的，每个报文中并没有\t源  地址或者目标地址信息，而是以若干位的二进制数来作为识别信息的标志，这些二进制数被称之为 ____  符。",
+      "answer": [
+        "标识",
+        "报文"
+      ],
+      "explain": "以报文为单位，用标识符识别。"
+    },
+    {
+      "id": 59,
+      "type": "填空",
+      "question": "CAN 的数据格式有标准格式和扩展格式两种，其主要区别在于标识符的 长度 不同。标准格式 CAN 的标识符长度是 ____ 位，而扩展格式 CAN 标识符长度可达____ 位。",
+      "answer": [
+        "29",
+        "11"
+      ],
+      "explain": "标准11位，扩展29位。"
+    },
+    {
+      "id": 60,
+      "type": "填空",
+      "question": "在 CAN 总线中，任何一个节点如果发生了错误，那么它可能出于下列 3 种故障状态 之一： “____” 状态 、 “____” 状态 和 ____  状态。",
+      "answer": [
+        "离线",
+        "错误被动",
+        "错误主动"
+      ],
+      "explain": "错误主动、错误被动、离线三种。"
+    },
+    {
+      "id": 61,
+      "type": "填空",
+      "question": "boot ROM固化____程序、____表、浮点数学表、____向量。",
+      "answer": [
+        "引导加载",
+        "定点数学",
+        "复位"
+      ],
+      "explain": "引导加载、定点数学、浮点数学、复位向量。"
+    },
+    {
+      "id": 62,
+      "type": "填空",
+      "question": "TMS320F28335DSP  的 启 动 代 码 固 化 在____中，当 TMS320F28335DSP 上电或者热复位后，首先由芯片本身对一些寄存器进行 初始 化，比如禁止 PIE，设置 CPU 状态寄存器 ST1 的 VMAP、 OBJMODE 、 AMODE 、 M0M1MAP 等 位 ， 然 后 从____中获取 ____ 向量。",
+      "answer": [
+        "复位",
+        "boot ROM",
+        "boot ROM"
+      ],
+      "explain": "boot ROM启动，获取复位向量。"
+    },
+    {
+      "id": 63,
+      "type": "填空",
+      "question": "TMS320F28335DSP 的 Boot ROM 里的复位向量（位于 0x3F FFC0）指向的是 InitBoot 函数（位于 0x3F FC00）,从而 F28335 开始执行 InitBoot。InitBoot 函数所做的工作主要有：初始化____  寄存器；将____ 指针设为 0x400；读 CSM 密码保护部分；调用 SelectBootMode，选择引导模式；调用 ADC 校准函数____；调用 ExitBoot，退出启动初始化。最后，跳转到 Flash 模式的  起始 地址，也就是 0x33 FFF6，开始执行用户的 C 语言程序。",
+      "answer": [
+        "ADC_cal()",
+        "堆栈",
+        "状态"
+      ],
+      "explain": "InitBoot初始化状态、堆栈=0x400、ADC_cal()。"
+    },
+    {
+      "id": 64,
+      "type": "填空",
+      "question": "____处是复位向量，存指向____函数的地址。",
+      "answer": [
+        "0x3F FFC0",
+        "InitBoot"
+      ],
+      "explain": "0x3F FFC0存放复位向量指向InitBoot。"
+    },
+    {
+      "id": 65,
+      "type": "填空",
+      "question": "InitBoot设栈指针____，调用____，跳转____执行用户程序。",
+      "answer": [
+        "0x400",
+        "ADC_cal()",
+        "0x33 FFF6"
+      ],
+      "explain": "SP=0x400，ADC_cal()，跳0x33 FFF6。"
+    },
+    {
+      "id": 66,
+      "type": "简答",
+      "question": "列举JTAG接口的引脚信号。",
+      "answer": "EMU1 EMU0 TMS TDO TDI TRST TCK TCK_RET PD GND",
+      "accept": [
+        "EMU1 EMU0 TMS TDO TDI TRST TCK TCK_RET PD GND",
+        "仿真引脚 测试时钟 测试数据"
+      ],
+      "explain": "JTAG: EMU1/EMU0(仿真)、TMS(方式选择)、TDO(数据出)、TDI(数据入)、TRST(复位)、TCK(时钟)、TCK_RET(时钟返回)、PD(连接状态)、GND(地)。"
+    },
+    {
+      "id": 67,
+      "type": "简答",
+      "question": "TMS320F28335存储器映像有哪些需要特别注意的？",
+      "answer": "保留区不能访问 外设帧只映射数据空间 EALLOW保护 CSM保护",
+      "accept": [
+        "保留区不能访问 外设帧只映射数据空间 EALLOW保护 CSM保护",
+        "保留区 外设帧受保护 向量只能一种被使能"
+      ],
+      "explain": "(1)保留区不可访问(2)外设帧只映射数据空间(3)Protected区受EALLOW保护(4)L0~L3/Flash受CSM保护(5)TI OTP只读(6)M0/PIE/BROM向量只能一种被使能。"
+    },
+    {
+      "id": 68,
+      "type": "简答",
+      "question": "编译器处理段的过程是什么？",
+      "answer": "源文件编译成目标文件 连接器相同段名连接在一起",
+      "accept": [
+        "源文件编译成目标文件 连接器相同段名连接在一起",
+        "每个源文件编译成obj文件 连接器合并相同段"
+      ],
+      "explain": "(1)源文件->目标文件(.obj)，含各自段(2)连接器将相同段名连接->可执行文件(.out)。"
+    },
+    {
+      "id": 69,
+      "type": "简答",
+      "question": "C语言经CCS编译产生哪些初始化段？",
+      "answer": "text cinit const econst pinit switch",
+      "accept": [
+        "text cinit const econst pinit switch",
+        "text cinit const"
+      ],
+      "explain": ".text、.cinit、.const、.econst、.pinit、.switch。"
+    },
+    {
+      "id": 70,
+      "type": "简答",
+      "question": "C语言经CCS编译产生哪些未初始化段？",
+      "answer": "bss ebss stack system esystem",
+      "accept": [
+        "bss ebss stack system esystem",
+        "bss ebss stack"
+      ],
+      "explain": ".bss、.ebss、.stack、.system、.esystem。"
+    },
+    {
+      "id": 71,
+      "type": "简答",
+      "question": "TMS320F28335的Boot ROM主要内容？",
+      "answer": "版本号 复位向量 CPU向量 数学表",
+      "accept": [
+        "版本号 复位向量 CPU向量 数学表",
+        "版本号 发布数据 校验和 复位向量 CPU向量 数学表"
+      ],
+      "explain": "TI分产品版本号、发布数据、校验求和、复位向量、CPU向量及数学表等。"
+    },
+    {
+      "id": 72,
+      "type": "简答",
+      "question": "COFF文件格式包含哪些内容？",
+      "answer": "段头 可执行代码 初始化数据 重定位信息 符号表",
+      "accept": [
+        "段头 可执行代码 初始化数据 重定位信息 符号表",
+        "段头 代码 数据 重定位 符号表"
+      ],
+      "explain": "段头、可执行代码、初始化数据、重定位信息、行号入口、符号表、字符表。"
+    },
+    {
+      "id": 73,
+      "type": "简答",
+      "question": "MEMORY指令中PAGE、name、attr、origin、length的含义？",
+      "answer": "PAGE标识存储空间 name存储空间名称 attr规定属性 origin起始地址 length长度",
+      "accept": [
+        "PAGE标识存储空间 name存储空间名称 attr规定属性 origin起始地址 length长度"
+      ],
+      "explain": "PAGE=标识存储空间；name=存储空间名称；attr=规定属性；origin=起始地址；length=长度。"
+    },
+    {
+      "id": 74,
+      "type": "简答",
+      "question": "简述定时器控制寄存器TIMERxTCR各字段含义。",
+      "answer": "TIF中断标志 TIE中断使能 FREE SOFT仿真方式 TRB重装 TSS停止",
+      "accept": [
+        "TIF中断标志 TIE中断使能 FREE SOFT仿真方式 TRB重装 TSS停止"
+      ],
+      "explain": "TIF(中断标志)、TIE(中断使能)、FREE/SOFT(仿真方式)、TRB(重装)、TSS(停止/启动)。"
+    },
+    {
+      "id": 75,
+      "type": "简答",
+      "question": "列举定时器0相关寄存器。",
+      "answer": "TIMER0TIM TIMER0TIMH TIMER0PRD TIMER0PRDH TIMER0TCR TIMER0TPR TIMER0TPRH",
+      "accept": [
+        "TIMER0TIM TIMER0TIMH TIMER0PRD TIMER0PRDH TIMER0TCR TIMER0TPR TIMER0TPRH",
+        "TIM TIMH PRD PRDH TCR TPR TPRH"
+      ],
+      "explain": "TIMER0TIM(L)/TIMH(H)计数器、TIMER0PRD(L)/PRDH(H)周期、TIMER0TCR控制、TIMER0TPR(L)/TPRH(H)预定标。"
+    },
+    {
+      "id": 76,
+      "type": "简答",
+      "question": "TMS320F28335的ADC模块特点？",
+      "answer": "12位 16通道 两个采样保持器 最高25MHz 12.5MSPS 0~3V",
+      "accept": [
+        "12位 16通道 两个采样保持器 最高25MHz 12.5MSPS 0~3V",
+        "12位 16输入通道 S/H-A S/H-B 25MHz 12.5MSPS"
+      ],
+      "explain": "(1)16个模拟输入(2)12位ADC内核，双采样保持器(3)最高25MHz/12.5MSPS(4)双/级联序列发生器(5)0~3V(6)16个结果寄存器。"
+    },
+    {
+      "id": 77,
+      "type": "简答",
+      "question": "ePWM模块包含哪些子模块？",
+      "answer": "TB CC AQ DB PC ET TZ",
+      "accept": [
+        "TB CC AQ DB PC ET TZ",
+        "时间基准 比较 动作限定 死区 斩波 事件触发 故障捕获"
+      ],
+      "explain": "TB(时间基准)、CC(比较)、AQ(动作限定)、DB(死区)、PC(斩波)、ET(事件触发)、TZ(故障捕获)。"
+    },
+    {
+      "id": 78,
+      "type": "简答",
+      "question": "ePWM模块具有哪些功能？",
+      "answer": "两路PWM 互补输出 相位控制 死区控制 故障保护 斩波 触发中断",
+      "accept": [
+        "两路PWM 互补输出 相位控制 死区控制 故障保护 斩波 触发中断"
+      ],
+      "explain": "(1)两路PWM(2)独立/互补输出(3)相位控制(4)死区控制(5)故障保护(6)高频斩波(7)中断/ADC触发(8)经GPIO输出(9)接收TZ1~T6故障信号。"
+    },
+    {
+      "id": 79,
+      "type": "简答",
+      "question": "ePWM时间基准和比较功能产生哪些事件？",
+      "answer": "TBCTR=0 TBCTR=PRD TBCTR=CMPA增 TBCTR=CMPA减 TBCTR=CMPB增 TBCTR=CMPB减",
+      "accept": [
+        "TBCTR=0 TBCTR=PRD TBCTR=CMPA增 TBCTR=CMPA减 TBCTR=CMPB增 TBCTR=CMPB减"
+      ],
+      "explain": "(1)TBCTR=0(2)TBCTR=PRD(3)TBCTR=CMPA且增(4)TBCTR=CMPA且减(5)TBCTR=CMPB且增(6)TBCTR=CMPB且减。"
+    },
+    {
+      "id": 80,
+      "type": "简答",
+      "question": "ePWM初始化步骤？",
+      "answer": "使能时钟 TBCLKSYNC清零 配置 置位TBCLKSYNC启动",
+      "accept": [
+        "使能时钟 TBCLKSYNC清零 配置 置位TBCLKSYNC启动"
+      ],
+      "explain": "(1)使能ePWM时钟(2)TBCLKSYNC=0停止时钟(3)配置ePWM(4)TBCLKSYNC=1启动时钟。"
+    },
+    {
+      "id": 81,
+      "type": "简答",
+      "question": "ePWM输出引脚可设置哪些动作？",
+      "answer": "无动作 置高 置低 翻转",
+      "accept": [
+        "无动作 置高 置低 翻转"
+      ],
+      "explain": "1.无动作2.置高3.置低4.翻转。"
+    },
+    {
+      "id": 82,
+      "type": "简答",
+      "question": "eQEP模块包含哪些单元？",
+      "answer": "QDU PCCU QCAP UTIME QWDOG",
+      "accept": [
+        "QDU PCCU QCAP UTIME QWDOG",
+        "正交解码 位置计数器 边沿捕获 定时器 看门狗"
+      ],
+      "explain": "QDU(正交解码)、PCCU(位置计数控制)、QCAP(边沿捕获)、UTIME(定时器基准)、QWDOG(看门狗)。"
+    },
+    {
+      "id": 83,
+      "type": "简答",
+      "question": "位置计数器有哪4种输入模式？",
+      "answer": "正交计数 方向计数 增计数 减计数",
+      "accept": [
+        "正交计数 方向计数 增计数 减计数"
+      ],
+      "explain": "由QDECCTL[QSRC]决定，有正交计数、方向计数、增计数、减计数四种模式。"
+    },
+    {
+      "id": 84,
+      "type": "简答",
+      "question": "eQEP位置计数器有哪4种运行模式？",
+      "answer": "索引脉冲复位 最大计数值复位 首次索引脉冲复位 单位时间输出事件复位",
+      "accept": [
+        "索引脉冲复位 最大计数值复位 首次索引脉冲复位 单位时间输出事件复位"
+      ],
+      "explain": "(1)索引脉冲复位(2)最大计数值复位(3)仅首次索引脉冲复位(4)单位时间输出事件复位(频率测量)。"
+    },
+    {
+      "id": 85,
+      "type": "简答",
+      "question": "eQEP模块可产生哪些中断信号？",
+      "answer": "PCE PHE QDC WTO PCU PCO PCT PCM SEL IEL UTO",
+      "accept": [
+        "PCE PHE QDC WTO PCU PCO PCT PCM SEL IEL UTO"
+      ],
+      "explain": "共11个中断：PCE、PHE、QDC、WTO、PCU、PCO、PCT、PCM、SEL、IEL、UTO。"
+    },
+    {
+      "id": 86,
+      "type": "代码",
+      "question": "【SY0301 指示灯控制】补全1~5处代码：\n#include \"DSP2833x_Device.h\"\n#include \"DSP2833x_Examples.h\"\n#define LED (*(unsigned short int *)0x180000)\n\nvoid Delay(unsigned int nTime); //1____\n\nvoid main(void)\n{\n    long i;\n    InitSysCtrl(); //2____\n    InitXintf16Gpio();\n    DINT; //3____\n    InitPieCtrl(); //4____\n    IER = 0x0000; IFR = 0x0000;\n    for(;;)\n    {\n        for(i=0;i<=0xf;i++)\n        {\n            LED=i; //5____\n            Delay(612);\n        }\n    }\n}",
+      "answer": [
+        "声明延时子程序",
+        "系统初始化",
+        "关中断",
+        "PIE模块初始化",
+        "点亮对应指示灯"
+      ],
+      "explain": "1声明延时子程序 2系统初始化 3关中断(DINT) 4PIE模块初始化 5点亮对应指示灯(LED=i)。"
+    },
+    {
+      "id": 87,
+      "type": "代码",
+      "question": "【SY0302 拨码开关】补全1~5处代码：\n#include \"DSP2833x_Device.h\"\n#include \"DSP2833x_Examples.h\"\n#define LED (*(unsigned short int *)0x180000)\n#define DIP (*(unsigned short int *)0x180001)\n\nvoid Delay(unsigned int nTime); //1____\n\nvoid main(void)\n{\n    InitSysCtrl(); //2____\n    InitXintf16Gpio(); //3____\n    DINT;\n    InitPieCtrl(); //4____\n    IER = 0x0000; IFR = 0x0000;\n    while (1)\n    {\n        LED=DIP; //5____\n    }\n}",
+      "answer": [
+        "声明延时子程序",
+        "系统初始化",
+        "初始化外部扩展接口",
+        "PIE模块初始化",
+        "按拨码开关的状态点亮对应指示灯"
+      ],
+      "explain": "1声明延时子程序 2系统初始化 3初始化外部扩展接口 4PIE模块初始化 5按拨码开关状态点亮指示灯(LED=DIP)。"
+    },
+    {
+      "id": 88,
+      "type": "代码",
+      "question": "【SY0403 LCD显示】补全1~5处代码：\nvoid main(void)\n{\n    int i,nCount=0,nBW=0;\n    InitSysCtrl();\n    InitXintf16Gpio();\n    CTRGR=0x80;Delay(LCDDELAY);CTRGR=0x0;Delay(LCDDELAY);CTRGR=0x80;Delay(LCDDELAY);\n    CTRLR=0;Delay(LCDDELAY);\n    CTRLR=0x40;Delay(LCDDELAY);\n    1____; // 打开显示\n    LCDCLS();\n    2____; // 设置显示起始行=0\n    Delay(LCDDELAY);\n    CTRLCDCR=0;Delay(LCDDELAY);\n    for (;;)\n    {\n        3____; // 设置操作页=0\n        Delay(LCDDELAY);\n        4____; // 使命令生效\n        Delay(LCDDELAY);\n        5____; // 设置起始列=0\n        Delay(LCDDELAY);\n        CTRLCDCR=0;Delay(LCDDELAY);\n    }\n}",
+      "answer": [
+        "TurnOnLCD()",
+        "CTRLCDCMDR=LCDCMDSTARTLINE",
+        "CTRLCDCMDR=LCDCMDPAGE",
+        "CTRLCDCR=0",
+        "CTRLCDCMDR=LCDCMDVERADDRESS"
+      ],
+      "explain": "1 TurnOnLCD()打开显示 2 CTRLCDCMDR=LCDCMDSTARTLINE设起始行=0 3 CTRLCDCMDR=LCDCMDPAGE设操作页=0 4 CTRLCDCR=0使命令生效 5 CTRLCDCMDR=LCDCMDVERADDRESS设置起始列=0。"
+    },
+    {
+      "id": 89,
+      "type": "代码",
+      "question": "【实验 SY0404】键盘扫描控制——完整代码，无填空：\n#define SCANCODE_0 0x70\n#define SCANCODE_1 0x69\n#define SCANCODE_2 0x72\n#define SCANCODE_3 0x7A\n#define SCANCODE_4 0x6B\n#define SCANCODE_5 0x73\n#define SCANCODE_6 0x74\n#define SCANCODE_7 0x6C\n#define SCANCODE_8 0x75\n#define SCANCODE_9 0x7D\n#define SCANCODE_Del 0x49\n#define SCANCODE_Enter 0x5A\n#define SCANCODE_Plus 0x79\n#define SCANCODE_Minus 0x7B\n#define SCANCODE_Mult 0x7C\n#define SCANCODE_Divid 0x4A\n#define SCANCODE_Num 0x77\nvoid Delay(unsigned int nTime);\nvoid RefreshLEDArray();\nvoid SetLEDArray(int nNumber);\nchar ConvertScanToChar(unsigned char cScanCode);\nunsigned int nScreenBuffer[1024];\nunsigned char ledbuf[8],ledx[8];\n#define LEDS *(int *)0x280000\n#define CTRGR *(int *)0x208000\n#define CTRLCDCMDR *(int *)0x208001\n#define CTRKEY *(int *)0x208001\n#define CTRLCDCR *(int *)0x208002\n#define CTRCLKEY *(int *)0x208002\n#define CTRLCDLCR *(int *)0x208003\n#define CTRLCDRCR *(int *)0x208004\n#define CTRLA *(int *)0x208005\n#define CTRLR *(int *)0x208007\nunsigned int uPort8000;\nunsigned int uWork,nCount=0,uN,uN1,nCount1,nDir;\nvoid main(void)\n{\n int nCount,nCursorCount;\n unsigned int nScanCode,nKeyCode;\n unsigned char cKey,cOldKey;\n unsigned int nSpeed;\n InitSysCtrl();\n InitXintf16Gpio();\n CTRGR=0x80;\n CTRGR=0x0;\n CTRGR=0x80;\n CTRLR=0;\n CTRLR=0x40;\n CTRLR=0xc1;\n uPort8000=CTRLCDCR;\n for ( nCount=0; nCount<8; nCount++ )\n {\n   ledbuf[nCount]=0x0ff;\n   ledx[nCount]=(nCount<<4);\n }\n RefreshLEDArray();\n nCount=nCursorCount=0;\n for (;;)\n {\n   nScanCode=CTRLCDCMDR;\n   nScanCode&=0x0ff;\n   uPort8000=CTRLCDCR;\n   if ( nScanCode!=0 )\n   {\n     if ( nScanCode==9 ) *(int *)0x208007=0x20;\n     else\n     {\n       cKey=nScanCode;\n       if ( cKey!=0 && cOldKey!=cKey )\n       {\n         *(int *)0x208007=0x0;\n         Delay(100);\n         *(int *)0x208007=0x40;\n         Delay(100);\n         cOldKey=cKey;\n         switch ( cKey )\n         {\n           case 1: *(int *)0x208007=0x01; break;\n           case 2: *(int *)0x208007=0x02; break;\n           case 3: *(int *)0x208007=0x04; break;\n           case 4: *(int *)0x208007=0x48; break;\n           case 5: *(int *)0x208007=0x50; break;\n           case 6: *(int *)0x208007=0x60; break;\n           case 7: *(int *)0x208007=0x08; break;\n           case 8: *(int *)0x208007=0x10; break;\n         }\n       }\n     }\n   }\n   Delay(25);\n   nCursorCount++; nCursorCount%=4;\n   if ( nCursorCount==0 ) ledbuf[7]^=0x80;\n }\n}\nvoid RefreshLEDArray()\n{\n int i;\n for ( i=0;i<8;i++ )\n {\n   CTRGR=ledx[i];\n   CTRLA=ledbuf[i];\n }\n}\nchar ConvertScanToChar(unsigned char cScanCode)\n{\n char cReturn;\n cReturn=0;\n switch ( cScanCode )\n {\n case SCANCODE_0: cReturn='0'; break;\n case SCANCODE_1: cReturn='1'; break;\n case SCANCODE_2: cReturn='2'; break;\n case SCANCODE_3: cReturn='3'; break;\n case SCANCODE_4: cReturn='4'; break;\n case SCANCODE_5: cReturn='5'; break;\n case SCANCODE_6: cReturn='6'; break;\n case SCANCODE_7: cReturn='7'; break;\n case SCANCODE_8: cReturn='8'; break;\n case SCANCODE_9: cReturn='9'; break;\n }\n return cReturn;\n}",
+      "answer": [],
+      "explain": "SY0404 键盘扫描实验完整代码，无需填空。",
+      "displayOnly": true
+    },
+    {
+      "id": 90,
+      "type": "代码",
+      "question": "【实验 SY0405】GPIO与蜂鸣器/音乐实验——完整代码，无填空：\n#include \"DSP2833x_Device.h\"\n#include \"DSP2833x_Examples.h\"\ninterrupt void cpu_timer0_isr(void);\nvoid Delay(unsigned int nTime);\nvoid Gpio_select(void);\nvoid error(int);\nvoid program_stop();\nvoid Gpio_PortA(void);\nvoid Gpio_PortB(void);\nvoid Gpio_PortF(void);\nvoid Gpio_PortDEG(void);\n#define nMusicNumber 40\n#define LEDS *(int *)0x280000\n#define CTRGR *(int *)0x208000\n#define CTRLCDCMDR *(int *)0x208001\n#define CTRKEY *(int *)0x208001\n#define CTRLCDCR *(int *)0x208002\n#define CTRCLKEY *(int *)0x208002\n#define CTRLCDLCR *(int *)0x208003\n#define CTRLCDRCR *(int *)0x208004\n#define CTRLA *(int *)0x208005\n#define CTRLR *(int *)0x208007\nUint16 var1 = 0;\nUint16 var2 = 0;\nUint16 var3 = 0;\nUint16 test_count = 0;\nUint16 Test_flag = 0;\nUint16 Test_var = 0;\nUint16 Test_status[32];\nUint16 PASS_flag = 0;\nunsigned int uWork;\nint nAddStep,nStep,jishu=0;\nunsigned int uWork,nCount;\nunsigned int music[nMusicNumber][2]={\n{182,480},{151,480},{135,480},{121,480},{135,480},{151,480},{182,480},{0,480},\n{182,480},{151,480},{135,480},{121,480},{135,480},{151,480},{182,480},{0,480},\n{182,240},{151,240},{135,240},{121,240},{135,240},{151,240},{182,240},{0,240},\n{182,240},{151,240},{135,240},{121,240},{135,240},{151,240},{182,240},{0,240},\n{182,1920},{151,1920},{135,1920},{121,1920},{135,1920},{151,1920},{182,1920},{0,1920}\n};\nvoid main(void)\n{\n int j=0,nCount=0;\n InitSysCtrl();\n InitPieCtrl();\n InitXintf16Gpio();\n IER = 0x0000;\n IFR = 0x0000;\n InitPieVectTable();\n EALLOW;\n EDIS;\n CpuTimer0Regs.PRD.al = music[nCount][0]*350;\n CpuTimer0Regs.TPR.all = 0;\n CpuTimer0Regs.TIM.all = 0;\n CpuTimer0Regs.TPRH.all = 0;\n CpuTimer0Regs.TCR.bit.TSS = 1;\n CpuTimer0Regs.TCR.bit.SOFT = 1;\n CpuTimer0Regs.TCR.bit.FREE = 1;\n CpuTimer0Regs.TCR.bit.TRB = 1;\n CpuTimer0Regs.TCR.bit.TIE = 1;\n CpuTimer0.InterruptCount = 0;\n StartCpuTimer0();\n IER |= M_INT1;\n PieCtrlRegs.PIEIER1.bit.INTx7 = 1;\n EINT;\n ERTM;\n InitXintf16Gpio();\n CTRGR=0x80;\n CTRGR=0x0;\n CTRGR=0x80;\n CTRLR=0;\n CTRLR=0x40;\n CTRGR=0x8;\n CTRGR=0x8;\n Gpio_PortA();\n while ( j<1 )\n {\n   Delay(music[nCount][1]*5);\n   nCount++;\n   nCount%=nMusicNumber;\n   CpuTimer0Regs.PRD.all = music[nCount][0]*350;\n }\n}\ninterrupt void cpu_timer0_isr(void)\n{\n CpuTimer0.InterruptCount++;\n PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;\n CpuTimer0Regs.TCR.bit.TIF = 1;\n CpuTimer0Regs.TCR.bit.TRB = 1;\n GpioDataRegs.GPASET.bit.GPIO0=1;\n if(jishu==0)\n {GpioDataRegs.GPADAT.bit.GPIO0=0; jishu=1;}\n else\n {GpioDataRegs.GPADAT.bit.GPIO0=1; jishu=0;}\n}\nvoid Delay(unsigned int nDelay)\n{\n int i,j,k=0;\n for ( i=0;i<nDelay;i++ ) for ( j=0;j<1024;j++ ) k++;\n}\nvoid Gpio_PortA(void)\n{\n var1= 0x0000;\n var2= 0x00FF;\n var3= 0x0000;\n Gpio_select();\n GpioDataRegs.GPACLEAR.all = 0x00FF;\n GpioDataRegs.GPASET.bit.GPIO0=1;\n}\nvoid Gpio_select(void)\n{\n EALLOW;\n GpioCtrlRegs.GPAPUD.bit.GPIO0 = 0;\n GpioCtrlRegs.GPAQSEL1.bit.GPIO0 = 0;\n GpioCtrlRegs.GPAMUX1.bit.GPIO0 = 0;\n GpioCtrlRegs.GPADIR.bit.GPIO0 = 1;\n EDIS;\n}",
+      "answer": [],
+      "explain": "SY0405 GPIO与蜂鸣器/音乐实验完整代码，无需填空。",
+      "displayOnly": true
+    }
+  ]
+}
